@@ -1,2 +1,2 @@
 # desktop-tutorial
-GitHub Desktop tutorial repository
+GitHub Desktop tutorial rep
