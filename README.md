@@ -1,2 +1,2 @@
-# desktop-tutorial
+# Warehouse management system
 GitHub Desktop tutorial rep
