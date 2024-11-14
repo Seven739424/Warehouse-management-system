@@ -33,7 +33,23 @@ public class warehouseManagementSystem {
     //add goods
     public static void addGoods(ArrayList<goods> goodsList) {
         System.out.println("add goods");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter good name");
+        String goodName = sc.next();
 
+        System.out.println("Enter good amount");
+        int goodAmount = sc.nextInt();
+
+        System.out.println("Enter good price");
+        double goodPrice = sc.nextDouble();
+
+        goods s = new goods(goodName, goodAmount, goodPrice);
+
+        //put the information in the list
+        goodsList.add(s);
+
+        //tell users they have add successfully
+        System.out.println("Goods added!");
     }
     //deleteGoods
     public static void deleteGoods(ArrayList<goods> goodsList) {
@@ -46,6 +62,18 @@ public class warehouseManagementSystem {
     //searchGoods
     public static void searchGoods(ArrayList<goods> goodsList) {
         System.out.println("search goods");
+        if(goodsList.size()==0){
+            System.out.println("no goods");
+            return;
+        }
+
+        //print the header information
+        System.out.println("name\tamount\tprice");
+
+        for(int i=0;i<goodsList.size();i++){
+            goods goods = goodsList.get(i);
+            System.out.println(goods.getName()+"\t"+goods.getPrice()+"\t"+goods.getAmount());
+        }
     }
 
 }
