@@ -1,5 +1,6 @@
 package warehouse.system;
 
+import javax.sound.midi.InvalidMidiDataException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,10 +55,48 @@ public class warehouseManagementSystem {
     //deleteGoods
     public static void deleteGoods(ArrayList<goods> goodsList) {
         System.out.println("delete goods");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the name to be deleted");
+        String goodName = sc.next();
+        int index=getIndex(goodsList,goodName);
+        if(index>=0){
+            goodsList.remove(index);
+            System.out.println("Goods deleted!");
+        }else{
+            System.out.println("Invalid name");
+        }
+
+
     }
     //changeGoods
     public static void changeGoods(ArrayList<goods> goodsList) {
         System.out.println("change goods");
+        System.out.println("Enter good name");
+        Scanner sc = new Scanner(System.in);
+        String goodName = sc.next();
+        int index=getIndex(goodsList,goodName);
+        if(index==-1){
+            System.out.println("Invalid name");
+            return;
+        }
+        goods goods = goodsList.get(index);
+        System.out.println("Enter the name of the goods to be modified");
+        String newName = sc.next();
+        goods.setName(newName);
+
+        System.out.println("Enter the amounts of the goods to be modified");
+        int newAmount = sc.nextInt();
+        goods.setAmount(newAmount);
+
+        System.out.println("Enter the price of the goods to be modified");
+        double newPrice = sc.nextDouble();
+        goods.setPrice(newPrice);
+
+        System.out.println("updated!");
+
+
+
+
     }
     //searchGoods
     public static void searchGoods(ArrayList<goods> goodsList) {
@@ -72,8 +111,27 @@ public class warehouseManagementSystem {
 
         for(int i=0;i<goodsList.size();i++){
             goods goods = goodsList.get(i);
-            System.out.println(goods.getName()+"\t"+goods.getPrice()+"\t"+goods.getAmount());
+            System.out.println(goods.getName()+"\t"+goods.getAmount()+"\t"+goods.getPrice());
         }
     }
 
-}
+    //Determine whether the goods exist
+    public static boolean contains(ArrayList<goods> goodsList, String goodName) {
+        return getIndex(goodsList,goodName)>=0;
+    }
+
+
+    public static int getIndex(ArrayList<goods> goodsList,String goodName) {
+        for(int i=0;i<goodsList.size();i++){
+            goods goods = goodsList.get(i);
+            String name = goods.getName();
+            if(name.equals(goodName)){
+                return i;
+            }
+        }
+        return -1;
+    }
+        }
+
+
+
